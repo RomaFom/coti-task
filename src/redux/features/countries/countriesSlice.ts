@@ -1,4 +1,4 @@
-import { createSlice, PayloadAction } from "@reduxjs/toolkit";
+import { createSelector, createSlice, PayloadAction } from "@reduxjs/toolkit";
 import { RootState } from "../../store";
 import { ICountryMap } from "../../../types";
 
@@ -58,6 +58,18 @@ export const {
   setFetchingCountriesDone,
 } = countriesSlice.actions;
 
-export const getCountries = (state: RootState) => state.countries.data;
+export const getCountries = (state: RootState) => {
+  const { data, isFetching } = state.countries;
+  return { data, isFetching };
+};
+
+// get countries by first letter
+export const getCountriesByFirstLetter = createSelector(
+  [
+    (state: RootState, firstLetter: string) =>
+      state.countries.data[firstLetter],
+  ],
+  (countries) => countries
+);
 
 export default countriesSlice.reducer;

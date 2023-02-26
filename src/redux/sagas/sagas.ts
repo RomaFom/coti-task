@@ -10,7 +10,7 @@ import { AxiosResponse } from "axios";
 import { ICountryResponse } from "../../types";
 import { createCountryMap, sortCountries } from "../../utils/helpers";
 
-async function getCountries() {
+async function countriesFetcher() {
   const res: AxiosResponse<Array<ICountryResponse>> = await countriesApi.get(
     "/all"
   );
@@ -23,7 +23,7 @@ function* fetchCountries() {
     // TODO: fix this error
     yield put(setFetchingCountriesStart());
     // @ts-ignore
-    const countries = yield call(getCountries);
+    const countries = yield call(countriesFetcher);
     yield put(setCountries(countries));
   } catch (error) {
     console.error("Failed to fetch countries", error);
@@ -33,6 +33,9 @@ function* fetchCountries() {
 }
 
 export function* watchForCountries() {
+  // Fetch countries on app start without waiting for 5 seconds
+  yield call(fetchCountries);
+
   const channel = eventChannel((emit) => {
     const intervalId = setInterval(() => {
       emit("tick");
