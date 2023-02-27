@@ -58,13 +58,13 @@ export const {
   setFetchingCountriesDone,
 } = countriesSlice.actions;
 
-export const getCountries = (state: RootState) => {
+export const getCountriesSelector = (state: RootState) => {
   const { data, isFetching } = state.countries;
   return { data, isFetching };
 };
 
 // get countries by first letter
-export const getCountriesByFirstLetter = createSelector(
+export const getCountriesByFirstLetterSelector = createSelector(
   [
     (state: RootState, firstLetter: string) =>
       state.countries.data[firstLetter],
@@ -73,6 +73,18 @@ export const getCountriesByFirstLetter = createSelector(
     if (!countries) return [];
     return Object.values(countries);
   }
+);
+
+export const getCountryByNameSelector = createSelector(
+  [
+    (state: RootState, countryName: string) => {
+      if (!countryName) return null;
+      const firstLetter = countryName[0].toUpperCase();
+      if (!state.countries.data[firstLetter]) return null;
+      return state.countries.data[firstLetter][countryName];
+    },
+  ],
+  (country) => country
 );
 
 export default countriesSlice.reducer;

@@ -1,5 +1,5 @@
 import React from "react";
-import { ICountry } from "../../types";
+import { ICountry } from "../../../types";
 import {
   StyledCard,
   StyledCardContainer,

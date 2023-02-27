@@ -21,6 +21,7 @@ export const createCountryMap = (
       population: country.population,
       cca2: country.cca2,
       flag: country.flag,
+      flagUrl: country.flags.png,
     };
   });
   return countriesObject;
