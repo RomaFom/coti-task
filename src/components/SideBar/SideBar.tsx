@@ -17,12 +17,18 @@ const SideBar: React.FC = () => {
     <>
       <Aside>
         <Nav>
+          <Link to={"/"}>
+            <NavButton>Home</NavButton>
+          </Link>
           {isFetching && <div>Loading...</div>}
           {!isFetching &&
             countriesDictionary.map((firstLetter) => (
-              <NavButton key={firstLetter}>
-                <Link to={`/${firstLetter}`}>{firstLetter}</Link>
-              </NavButton>
+              <Link
+                key={`side-bar-nav-item-${firstLetter}`}
+                to={`/${firstLetter}`}
+              >
+                <NavButton>{firstLetter}</NavButton>
+              </Link>
             ))}
         </Nav>
       </Aside>
