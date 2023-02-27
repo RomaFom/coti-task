@@ -1,6 +1,7 @@
 import { createSelector, createSlice, PayloadAction } from "@reduxjs/toolkit";
 import { RootState } from "../../store";
 import { ICountry, ICountryMap } from "../../../types";
+import lodash from "lodash";
 
 interface CountriesState {
   data: ICountryMap;
@@ -31,23 +32,15 @@ export const countriesSlice = createSlice({
         state.data = action.payload;
         return;
       }
-      // when state is not empty, add new countries
+
       const newCountries = action.payload;
       const oldCountries = state.data;
-      const countriesABC = Object.keys(newCountries);
-
-      countriesABC.forEach((key) => {
-        if (!oldCountries[key]) {
-          oldCountries[key] = newCountries[key];
-        } else {
-          const newCountryNames = Object.values(newCountries[key]);
-          newCountryNames.forEach((country) => {
-            if (!oldCountries[key][country.name]) {
-              oldCountries[key][country.name] = country;
-            }
-          });
-        }
-      });
+      // when state is not empty, check if new data is equal to stored state data
+      const isObjectsEqual = lodash.isEqual(newCountries, oldCountries);
+      if (!isObjectsEqual) {
+        state.data = newCountries;
+        return;
+      }
     },
   },
 });
