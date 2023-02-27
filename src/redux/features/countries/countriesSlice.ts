@@ -1,6 +1,6 @@
 import { createSelector, createSlice, PayloadAction } from "@reduxjs/toolkit";
 import { RootState } from "../../store";
-import { ICountryMap } from "../../../types";
+import { ICountry, ICountryMap } from "../../../types";
 
 interface CountriesState {
   data: ICountryMap;
@@ -75,16 +75,33 @@ export const getCountriesByFirstLetterSelector = createSelector(
   }
 );
 
+// get country by name
 export const getCountryByNameSelector = createSelector(
   [
     (state: RootState, countryName: string) => {
       if (!countryName) return null;
-      const firstLetter = countryName[0].toUpperCase();
+      const firstLetter = countryName.charAt(0).toUpperCase();
       if (!state.countries.data[firstLetter]) return null;
       return state.countries.data[firstLetter][countryName];
     },
   ],
   (country) => country
+);
+
+// get countries by search value
+export const searchMatchingCountriesSelector = createSelector(
+  [
+    (state: RootState, searchValue: string) => {
+      if (!searchValue) return [] as Array<ICountry>;
+      const firstLetter = searchValue.charAt(0).toUpperCase();
+      if (!state.countries.data[firstLetter]) return [] as Array<ICountry>;
+      const countries = Object.values(state.countries.data[firstLetter]);
+      return countries.filter((country) =>
+        country.name.toLowerCase().includes(searchValue.toLowerCase())
+      );
+    },
+  ],
+  (countries) => countries
 );
 
 export default countriesSlice.reducer;
