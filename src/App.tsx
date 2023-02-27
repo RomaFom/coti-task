@@ -3,9 +3,7 @@ import "./App.css";
 import Layout from "./components/Layout";
 import { Route, Routes } from "react-router-dom";
 import { ERouteNames } from "./routes/routes";
-import HomePage from "./pages/HomePage";
-import CountriesByLetterPage from "./pages/CountriesByLetterPage";
-import CountryDetailPage from "./pages/CountryDetailPage";
+import { HomePage, CountriesByLetterPage, CountryDetailPage } from "./pages";
 
 const App: React.FC = () => {
   return (
