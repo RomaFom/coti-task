@@ -8,13 +8,10 @@ export const Aside = styled.aside`
   z-index: 20;
   flex-direction: column;
   align-items: flex-start;
-  width: 250px;
+  width: 72px;
   height: 100%;
   padding: 40px 10px 30px 10px;
   border-right: 1px solid black;
-  @media (width < 580px) {
-    width: 72px;
-  }
 `;
 
 export const Nav = styled.nav`

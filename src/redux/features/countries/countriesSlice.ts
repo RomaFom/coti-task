@@ -69,7 +69,10 @@ export const getCountriesByFirstLetter = createSelector(
     (state: RootState, firstLetter: string) =>
       state.countries.data[firstLetter],
   ],
-  (countries) => countries
+  (countries) => {
+    if (!countries) return [];
+    return Object.values(countries);
+  }
 );
 
 export default countriesSlice.reducer;
