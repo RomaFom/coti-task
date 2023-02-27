@@ -15,7 +15,7 @@ const Layout: React.FC = () => {
     if (countryParam) {
       return navigate(`/${countryParam.charAt(0)}`);
     }
-  }, [countryParam, startsWithParam]);
+  }, [countryParam, navigate, startsWithParam]);
 
   return (
     <>

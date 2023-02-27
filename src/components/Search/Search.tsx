@@ -26,7 +26,7 @@ const Search: React.FC<Props> = ({
   //  Side effect for debounced value
   useEffect(() => {
     onDebounceDone(debouncedValue);
-  }, [debouncedValue]);
+  }, [debouncedValue, onDebounceDone]);
 
   return (
     <>

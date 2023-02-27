@@ -36,4 +36,7 @@ export const NavButton = styled.button`
     text-decoration: none;
     color: inherit;
   }
+  &.active {
+    color: #f5c518;
+  }
 `;

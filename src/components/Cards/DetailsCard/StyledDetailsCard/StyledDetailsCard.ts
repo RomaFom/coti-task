@@ -10,10 +10,11 @@ export const StyledCardWrapper = styled.section`
   border-radius: 10px;
 
   img {
-    width: 100%;
-    height: 200px;
-    object-fit: cover;
+    width: auto;
+    max-height: 200px;
+    object-fit: contain;
     border-radius: 10px 10px 0 0;
+    padding: 20px 10px;
   }
 `;
 

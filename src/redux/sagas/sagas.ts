@@ -18,11 +18,9 @@ async function countriesFetcher() {
   return createCountryMap(sortedCountries);
 }
 
-function* fetchCountries() {
+function* fetchCountries(): any {
   try {
-    // TODO: fix this error
     yield put(setFetchingCountriesStart());
-    // @ts-ignore
     const countries = yield call(countriesFetcher);
     yield put(setCountries(countries));
   } catch (error) {
