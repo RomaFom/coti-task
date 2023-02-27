@@ -4,6 +4,7 @@ export const StyledCountriesGrid = styled.div`
   display: grid;
   justify-items: center;
   gap: 1.25rem;
+  margin: 20px auto;
 
   @media (min-width: 320px) {
     grid-template-columns: repeat(1, minmax(0, 1fr));

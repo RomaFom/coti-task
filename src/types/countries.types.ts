@@ -10,6 +10,7 @@ export interface ICountry {
   population: number;
   cca2: string;
   flag: string;
+  flagUrl: string;
 }
 
 export interface ICountryResponse {
